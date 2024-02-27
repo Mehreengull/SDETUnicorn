@@ -5,14 +5,13 @@ from utilities.customLogger import Logger
 class TestShop:
     logger = Logger.loggen()
 
-    def test_shop(self, openBrowser):
+    def test_shop_search_product(self, openBrowser):
         self.logger.info("***Start***")
         self.driver = openBrowser
         self.shop = ShopPage(self.driver)
         self.shop.inputSearchText("Camera")
         self.shop.clickSearch()
         product = self.shop.getPageHeading()
-        print(product)
         actual_page_heading = "Canon Antique Camera"
         if product == actual_page_heading:
             assert True
