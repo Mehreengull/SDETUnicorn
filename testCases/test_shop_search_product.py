@@ -1,7 +1,9 @@
 from pageObjects.ShopPage import ShopPage
 from utilities.customLogger import Logger
+import allure
 
 
+@allure.severity(allure.severity_level.NORMAL)
 class TestShop:
     logger = Logger.loggen()
 
@@ -22,3 +24,10 @@ class TestShop:
             assert False
         self.shop.addToCart()
         self.shop.addToCartConfirm()
+        allure.attach(self.driver.get_screenshot_as_png(), name="search_product", attachment_type=".png")
+
+    def test_add_to_cart(self, openBrowser):
+        self.logger.info("***Start***")
+        self.driver = openBrowser
+        self.shop = ShopPage(self.driver)
+        self.shop.addToCartClick()

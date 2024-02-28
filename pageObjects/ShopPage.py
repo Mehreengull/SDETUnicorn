@@ -9,6 +9,8 @@ class ShopPage:
     camera_heading_css = ".zak-page-title"
     add_to_cart_xpath = "//button[normalize-space()='Add to cart']"
     add_confirm_link = "View cart"
+    add_main_cta_xpath = "//a[@aria-label='Add to cart: “Branded Converse”']"
+    view_cart_xpath = "//a[normalize-space()='View cart']"
 
     def __init__(self, driver):
         self.driver = driver
@@ -31,3 +33,8 @@ class ShopPage:
         element.is_displayed()
         element.click()
 
+    def addToCartClick(self):
+        self.driver.find_element(By.XPATH, self.add_main_cta_xpath).click()
+
+    def viewCart(self):
+        self.driver.find_element(By.XPATH, self.view_cart_xpath).click()
